@@ -1,0 +1,28 @@
+<div class="tabs-container">
+      <div class="new-tab-add-container">
+          <div class="wrapper">
+            <mat-form-field appearance="fill">
+                <mat-label>Create new Tab</mat-label>
+                <input type="text" matInput [formControl]="newTabControl" placeholder="New tab">
+              </mat-form-field>
+            
+            <button mat-raised-button
+                    class="example-add-tab-button"
+                    (click)="addTab()">
+              Add
+            </button>
+          </div>
+      </div>
+      
+      <mat-tab-group [formGroup]="allTabsFormGroup">
+        <mat-tab *ngFor="let tab of tabs; let index = index" >
+          <ng-template mat-tab-label>
+            <div class="input-container">
+              <input class="tabsNameInput" id="nameInput" [formControlName]="tabs[index]"/>
+              <mat-icon class="delete-icn" (click)="removeTab(index)">delete</mat-icon>
+            </div>
+          </ng-template>
+          <app-noteme tabName={{tabs[index]}}></app-noteme>
+        </mat-tab>
+      </mat-tab-group>
+</div>
